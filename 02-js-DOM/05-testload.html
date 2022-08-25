@@ -49,12 +49,12 @@
 
       <section>
         <article>
-          <img src="https://placeimg.com/640/480/nature" alt="article 1 img" class="first" />
+          <img src="https://placeimg.com/400/300/arch" alt="article 1 img" class="first" />
           <h3>Article 1</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio suscipit eius placeat nam tempora ab quas a at provident? Placeat, eveniet quas repellendus quibusdam minus velit optio dicta reprehenderit non?</p>
         </article>
         <article>
-          <img src="https://placeimg.com/640/480/any" alt="article 2 img" />
+          <img src="https://placeimg.com/400/300/any" alt="article 2 img" />
           <h3>Article 2</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio suscipit eius placeat nam tempora ab quas a at provident? Placeat, eveniet quas repellendus quibusdam minus velit optio dicta reprehenderit non?</p>
         </article>
@@ -71,24 +71,28 @@
       const article1Heading = document.querySelector("article:nth-child(1) h3");
       const article1Content = document.querySelector("article:nth-child(1) p");
 
-      title.textContent = "Billeder";
-      article1Heading.textContent = "Nature";
-      article1Content.textContent = "Her står der noget om naturen";
-      img1.src = "img/img1.jpg";
-      img1.alt = "";
+      document.addEventListener("DOMContentLoaded", start);
 
-      let newArticle = document.createElement("article");
-      let newH3 = document.createElement("h3");
-      let newHeadlineText = document.createTextNode("Any");
-      newH3.appendChild(newHeadlineText);
-      let newPic = document.createElement("img");
-      newPic.src = "https://placeimg.com/640/480/any";
-      let newContent = document.createElement("p");
-      newContent.textContent = "Her står der noget";
-      newArticle.appendChild(newPic);
-      newArticle.appendChild(newH3);
-      newArticle.appendChild(newContent);
-      articleSection.appendChild(newArticle);
+      function start() {
+        title.textContent = "Billeder";
+        article1Heading.textContent = "Nature";
+        article1Content.textContent = "Her står der noget om naturen";
+        img1.src = "img/img1.jpg";
+        img1.alt = "";
+
+        let newArticle = document.createElement("article");
+        let newH3 = document.createElement("h3");
+        let newHeadlineText = document.createTextNode("Any");
+        newH3.appendChild(newHeadlineText);
+        let newPic = document.createElement("img");
+        newPic.src = "https://placeimg.com/640/480/any";
+        let newContent = document.createElement("p");
+        newContent.textContent = "Her står der noget";
+        newArticle.appendChild(newPic);
+        newArticle.appendChild(newH3);
+        newArticle.appendChild(newContent);
+        articleSection.appendChild(newArticle);
+      }
     </script>
   </body>
 </html>
