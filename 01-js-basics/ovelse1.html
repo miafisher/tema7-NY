@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Øvelse 1</title>
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="layout.css" />
+   
+<style>
+    img {
+    max-width: 100%;
+    }
+</style>
+
+  </head>
+  <body>
+        <img id="øl" src="img/beer.webp" alt="øl" />
+        <img id="snaps" src="img/snaps.webp" alt="snaps" />
+        <img id="cola" src="img/cola.webp" alt="cola" />
+        <img id="sprite" src="img/sprite.webp" alt="sprite" />
+
+    </div>
+    <script>document.querySelector("#øl").addEventListener("click", funktionDerKaldesVedKlik);
+document.querySelector("#snaps").addEventListener("click", funktionDerKaldesVedKlik);
+document.querySelector("#sprite").addEventListener("click", funktionDerKaldesVedKlik);
+document.querySelector("#cola").addEventListener("click", funktionDerKaldesVedKlik);
+
+function funktionDerKaldesVedKlik() {
+  if (this === cola || this === sprite) {
+    console.log("alkoholfri");
+  } else if (this === øl || this === snaps) {
+    console.log("indeholder alkohol");
+  }
+}
+</script>
+  </body>
+</html>
