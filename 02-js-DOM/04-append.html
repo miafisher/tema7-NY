@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        width: 80vw;
+        margin: 0 auto;
+      }
+
+      section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+      }
+
+      article {
+        border: 1px solid #000;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      h1,
+      footer {
+        text-align: center;
+      }
+
+      header,
+      footer {
+        padding: 15px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header><h1>Title</h1></header>
+    <main>
+      <h2>Undertitel</h2>
+
+      <section>
+        <article>
+          <img src="img/img1.png" alt="article 1 img" />
+          <h3>Article 1</h3>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio suscipit eius placeat nam tempora ab quas a at provident? Placeat, eveniet quas repellendus quibusdam minus velit optio dicta reprehenderit non?</p>
+        </article>
+        <article>
+          <img src="img/img2.jpg" alt="article 2 img" />
+          <h3>Article 1</h3>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio suscipit eius placeat nam tempora ab quas a at provident? Placeat, eveniet quas repellendus quibusdam minus velit optio dicta reprehenderit non?</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>This is a footer</footer>
+
+    <script>
+      const articleSection = document.querySelector("section");
+      const title = document.querySelector("header h1");
+      const article1 = document.querySelector("article:nth-child(1)");
+      const img1 = document.querySelector("article:nth-child(1) img");
+      const article1Heading = document.querySelector("article:nth-child(1) h3");
+      const article1Content = document.querySelector("article:nth-child(1) p");
+
+      title.textContent = "Billeder";
+      article1Heading.textContent = "Dame";
+      article1Content.textContent = "fjollet ansigtsudtryk";
+      img1.src = "img/img1.png";
+      img1.alt = "article 1 img";
+
+      let newArticle = document.createElement("article");
+      let newH3 = document.createElement("h3");
+      let newHeadlineText = document.createTextNode("Hund");
+      newH3.appendChild(newHeadlineText);
+      let newPic = document.createElement("img");
+      newPic.src = "img/img2.jpg";
+      let newContent = document.createElement("p");
+      newContent.textContent = "Dame der lufter sin hund";
+      newArticle.appendChild(newPic);
+      newArticle.appendChild(newH3);
+      newArticle.appendChild(newContent);
+      articleSection.appendChild(newArticle);
+    </script>
+  </body>
+</html>
