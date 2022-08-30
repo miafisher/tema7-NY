@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Persongalleri</title>
+
+    <style>
+      #holder {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      article {
+        border: 2px solid black;
+        border-radius: 5%;
+        padding: 4px;
+        text-align: center;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 0.4rem;
+        gap: 20px;
+        overflow-x: auto;
+      }
+
+      .valgt {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Alle</h1>
+
+      <nav>
+        <button data-troende="alle" class="valgt">Alle</button>
+        <button data-troende="ja">Troende</button>
+        <button data-troende="nej">Ikke troende</button>
+        <button data-troende="tvivler">Tvivler</button>
+      </nav>
+    </header>
+
+    <main id="holder"></main>
+
+    <template>
+      <article>
+        <img src="" alt="" />
+        <h2 class="fornavn"></h2>
+        <p class="efternavn"></p>
+        <p class="email"></p>
+      </article>
+    </template>
+
+    <div id="singleview">
+      <article>
+        <img src="" alt="" />
+        <h2></h2>
+      </article>
+    </div>
+
+    <script>
+      const url = "https://persongalleri-5d3e.restdb.io/rest/persongalleri";
+      const options = {
+        headers: {
+          "x-apikey": "600fe9211346a1524ff12e31",
+        },
+      };
+
+      let personer;
+      let filter = "alle";
+
+      const filterKnapper = document.querySelectorAll("nav button");
+      filterKnapper.forEach((knap) => knap.addEventListener("click", filtrerPersoner));
+      const header = document.querySelector("header h1");
+
+      function filtrerPersoner() {
+        filter = this.dataset.troende;
+        document.querySelector(".valgt").classList.remove("valgt");
+        this.classList.add("valgt");
+        hentData();
+        header.textContent = this.textContent;
+      }
+
+      async function hentData() {
+        const resspons = await fetch(url, options);
+        const json = await resspons.json();
+        vis(json);
+      }
+
+      function visData(json) {
+        console.log(json);
+      }
+
+      hentData();
+
+      const main = document.querySelector("main");
+      const template = document.querySelector("template");
+
+      function vis(json) {
+        console.log(json);
+        main.textContent = "";
+        json.forEach((person) => {
+          console.log("Troende", person.troende);
+          if (filter == person.troende || filter == "alle") {
+            const klon = template.cloneNode(true).content;
+            klon.querySelector("article").addEventListener("click", () => visPerson("person"));
+            klon.querySelector("img").src = "faces/" + person.billede;
+            klon.querySelector("h2").textContent = person.fornavn;
+            klon.querySelector(".efternavn").textContent = person.efternavn;
+            klon.querySelector(".email").textContent = person.email;
+            klon.querySelector("article").addEventListener("click", () => visPerson(person._id));
+            main.appendChild(klon);
+          }
+        });
+      }
+
+      function visPerson(id) {
+        console.log(id);
+        location.href = "singleview.html?id=" + id;
+      }
+
+      hentData();
+    </script>
+  </body>
+</html>
